@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <style>
+    /* Reset & Fonts */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; }
+
+    /* Navbar */
+    header {
+      position: fixed;
+      width: 100%;
+      background: rgba(13, 17, 23, 0.95);
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+    }
+    header h1 {
+      color: #00f7ff;
+      font-size: 1.5rem;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 20px;
+      color: #e6edf3;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: #00f7ff;
+      transition: 0.3s;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #161b22;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+      z-index: 1001;
+    }
+    .dropdown-content a {
+      color: #e6edf3;
+      padding: 10px 15px;
+      display: block;
+    }
+    .dropdown-content a:hover {
+      background-color: #00f7ff;
+      color: #111;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 0 10%;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+    }
+    .hero-content { max-width: 50%; }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+    .hero-content span { color: #00f7ff; }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .hero-content .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: #00f7ff;
+      color: #111;
+      font-weight: bold;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .hero-content .btn:hover {
+      background: #fff;
+      color: #111;
+    }
+    .hero-photo img {
+  width: 350px;
+  max-width: 100%;
+  object-fit: contain;
+  margin-top: 130px; /* ⬅ move image down */
+}
+
+
+    section { padding: 80px 10%; }
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: #00f7ff;
+    }
+
+    /* Skills */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .skill {
+      background: #161b22;
+      padding: 10px 20px;
+      border-radius: 20px;
+      border: 1px solid #00f7ff;
+      transition: 0.3s;
+    }
+    .skill:hover { background: #00f7ff; color: #111; }
+
+    /* Projects */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.project-card {
+  background: #161b22;
+  border-radius: 12px;
+  padding: 50px 20px 20px; /* ⬅ added extra top padding */
+  width: 40%;              
+  min-width: 430px;
+  min-height: 160px;       /* ⬅ ensure enough height */
+  text-align: center;
+  transition: 0.3s;
+  position: relative;
+}
+
+.project-card h3 {
+  color: #00f7ff;
+  margin: 0;
+  position: absolute;
+  top: 15px;
+  left: 20px; /* ⬅ moved to top-right */
+  font-size: 1.2rem;
+}
+
+.project-card p {
+  margin-bottom: 10px;
+}
+
+.project-card a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.project-card a:hover {
+  color: #00f7ff;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+
+
+
+    /* Timeline */
+    .timeline {
+      border-left: 2px solid #00f7ff;
+      padding-left: 20px;
+    }
+    .timeline-item { margin-bottom: 20px; }
+    .timeline-item h3 { color: #00f7ff; margin-bottom: 5px; }
+    .timeline-item a {
+      color: #fff;
+      text-decoration: underline;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+    .timeline-item a:hover { color: #00f7ff; }
+
+    /* Contact */
+    .contact p { text-align: center; margin-bottom: 20px; }
+    .contact a {
+      display: block;
+      text-align: center;
+      color: #00f7ff;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #161b22;
+      color: #aaa;
+    }
+
+    /* Services */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+.service-card {
+  background: #161b22;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: 0.3s;
+  border: 1px solid #00f7ff;
+}
+.service-card:hover {
+  transform: translateY(-5px);
+  background: #00f7ff;
+  color: #111;
+}
+.service-card h3 {
+  color: #00f7ff;
+  margin-bottom: 10px;
+}
+.service-card:hover h3 {
+  color: #111;
+}
+/* Testimonials */
+.testimonials {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+.testimonial-card {
+  background: #161b22;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  border: 1px solid #00f7ff;
+  position: relative;
+  transition: 0.3s;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  background: #00f7ff;
+  color: #111;
+}
+.testimonial-card p {
+  font-style: italic;
+  margin-bottom: 15px;
+}
+.testimonial-card h4 {
+  color: #00f7ff;
+}
+.testimonial-card span {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>My Portfolio</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+
+      <!-- Dropdown for extra sections -->
+      <div class="dropdown">
+        <a href="#">More ▾</a>
+        <div class="dropdown-content">
+          <a href="#services">Services</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Nouran Mohamed Samy</span></h1>
+      <p>Flutter Developer | Mobile App Enthusiast</p>
+      <a href="#projects" class="btn">View My Work</a>
+    </div>
+    <div class="hero-photo">
+      <img src="photo.png" alt="Your Photo" width="200" height="500">
+    </div>
+  </section>
+
+ <section id="about">
+    <h2>About Me</h2>
+    <p style="text-align:center; max-width:800px; margin:auto;">
+      I’m a passionate Flutter developer who goes beyond simply building mobile apps — I create solid, reliable Flutter foundations that run seamlessly on Android & iOS, built to be easy to update and scale as your business grows. With strong expertise in Flutter and Firebase, I deliver solutions that combine clean code, real-time performance, and long-term reliability.
+
+Through my projects and internships, I’ve developed applications ranging from task managers to fitness and e-commerce platforms, always prioritizing on-time delivery and client satisfaction. My goal is to transform your idea into a professional, future-ready mobile solution.
+    </p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <div class="skill">Flutter</div>
+      <div class="skill">Dart</div>
+      <div class="skill">Firebase</div>
+      <div class="skill">REST APIs</div>
+      <div class="skill">Git</div>
+      <div class="skill">Communication Skills</div>
+    </div>
+  </section>
+
+<section id="services">
+  <h2>Offered Services</h2>
+  <div class="services">
+    <div class="service-card">
+      <h3>Mobile App Development</h3>
+      <p>Building cross-platform Flutter apps for Android and iOS with clean code and modern UI/UX.</p>
+    </div>
+    <div class="service-card">
+      <h3>API Integration</h3>
+      <p>Connecting apps with REST APIs, Firebase, and third-party services for real-time features.</p>
+    </div>
+    <div class="service-card">
+      <h3>App Maintenance</h3>
+      <p>Providing bug fixes, performance improvements, and adding new features to existing apps.</p>
+    </div>
+    <div class="service-card">
+      <h3>UI/UX Design Support</h3>
+      <p>Turning Figma or design ideas into responsive and user-friendly Flutter interfaces.</p>
+    </div>
+  </div>
+</section>
+
+
+  <section id="projects">
+  <h2>Projects</h2>
+  <div class="projects">
+    <div class="project-card">
+      <h3>Core Shift</h3>
+      <p>A Flutter app that helps users track their workouts and meals.</p>
+      <a href="https://github.com/Noran-cloud/Core-Shift-app.git" target="_blank">View</a>
+    </div>
+    <div class="project-card">
+      <h3>Florela</h3>
+      <p>An app for creating and selling custom flower bouquets.</p>
+      <a href="https://github.com/Noran-cloud/Florela-app.git" target="_blank">View</a>
+    </div>
+    <div class="project-card">
+      <h3>ViraRank</h3>
+      <p>Predicts if your post or website will go viral.</p>
+      <a href="https://github.com/Noran-cloud/ViraRank-app.git" target="_blank">View</a>
+    </div>
+  </div>
+</section>
+
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>B.Sc. Computer Science</h3>
+        <p>Mansoura University — Expected 2026</p>
+      </div>
+    
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Trainee - ITI</h3>
+        <p>Mobile Development using Flutter  (July 2025 - Aug 2025) </p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Trainee - MCIT Rwad</h3>
+        <p>Cross Platform Mobile App Developer (July 2025 - present)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Flutter Development Certificate</h3>
+        <p>ITI - 2025 
+          <a href="https://drive.google.com/file/d/1W7iZQdNg4NvT6GsvUP4OT8weKn3H1tYC/view?usp=sharing" target="_blank">View</a>
+        </p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Freelance Course</h3>
+        <p>Mahra-Tech - 2025 
+          <a href="https://drive.google.com/file/d/1yUj1aC7rT46LxemJOBxfyZ7mLNHVXVZg/view?usp=sharing" target="_blank">View</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonials">
+    <div class="testimonial-card">
+      <p>"Nouran delivered our Flutter app on time with outstanding performance and clean UI. Highly recommended!"</p>
+      <h4>Ahmed Hassan</h4>
+      <span>Project Manager, Tech Solutions</span>
+    </div>
+    <div class="testimonial-card">
+      <p>"Her ability to transform our ideas into a real mobile app exceeded expectations. Excellent communication!"</p>
+      <h4>Sarah Ali</h4>
+      <span>Startup Founder</span>
+    </div>
+    <div class="testimonial-card">
+      <p>"Professional, reliable, and skilled in Flutter. Will definitely work with Nouran again."</p>
+      <h4>Mohamed Youssef</h4>
+      <span>Freelance Client</span>
+    </div>
+  </div>
+</section>
+ <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Feel free to reach out!</p>
+    <a href="mailto:nouranelmahdy@email.com">📧 nouranelmahdy@email.com</a>
+    <a href="tel:+201234567890">📞 +20 123 456 7890</a>
+    <a href="https://linkedin.com/in/noran-samy" target="_blank">💼 LinkedIn</a>
+    <a href="https://github.com/Noran-cloud" target="_blank">💻 GitHub</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nouran Mohamed Samy. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>
